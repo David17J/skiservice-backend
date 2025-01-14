@@ -1,13 +1,13 @@
-package com.ipso.skiservicebackend;
+package com.ipso.skiservice.backend;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SkiservicebackendApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(SkiservicebackendApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }
