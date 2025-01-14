@@ -1,5 +1,6 @@
 package com.ipso.skiservice.backend.control;
 
+import com.ipso.skiservice.backend.model.Prioritaet;
 import com.ipso.skiservice.backend.model.ServiceAngebot;
 import com.ipso.skiservice.backend.repository.ServiceAngebotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +35,13 @@ public class ServiceAngebotController {
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
         serviceAngebotRepository.deleteById(id);
+    }
+
+
+    @GetMapping("/prios")
+    public Prioritaet[] getPrios() {
+        return Prioritaet.values();
+
     }
 
 }

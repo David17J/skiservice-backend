@@ -1,50 +1,29 @@
 package com.ipso.skiservice.backend.model;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
+@Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 public class ServiceAuftrag {
 
+    @Id
     private Long id;
     @NonNull
-    private String title;
-    private boolean done;
+    private String vorname;
+    private String nachname;
+    private String email;
+    private String telefon;
+    private Prioritaet prioritaet;
 
-    public ServiceAuftrag() {
-    }
+    @OneToOne
+    private ServiceAngebot serviceAngebot;
 
-    public ServiceAuftrag(Long id, String title, boolean done) {
-        this.id = id;
-        this.title = title;
-        this.done = done;
-    }
-
-    @Id
-    @GeneratedValue
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public boolean isDone() {
-        return done;
-    }
-
-    public void setDone(boolean done) {
-        this.done = done;
-    }
 }
