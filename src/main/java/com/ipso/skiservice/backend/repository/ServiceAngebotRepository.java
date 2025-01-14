@@ -1,7 +1,7 @@
 package com.ipso.skiservice.backend.repository;
 
-import com.ipso.skiservice.backend.model.Serviceangebot;
+import com.ipso.skiservice.backend.model.ServiceAngebot;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface ServiceAngebotRepository extends JpaRepository<Serviceangebot, Long> {
+public interface ServiceAngebotRepository extends JpaRepository<ServiceAngebot, Long> {
 }

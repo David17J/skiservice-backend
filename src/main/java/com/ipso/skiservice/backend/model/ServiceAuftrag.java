@@ -6,17 +6,17 @@ import jakarta.persistence.Id;
 import org.springframework.lang.NonNull;
 
 @Entity
-public class Serviceangebot {
+public class ServiceAuftrag {
 
     private Long id;
     @NonNull
     private String title;
     private boolean done;
 
-    public Serviceangebot() {
+    public ServiceAuftrag() {
     }
 
-    public Serviceangebot(Long id, String title, boolean done) {
+    public ServiceAuftrag(Long id, String title, boolean done) {
         this.id = id;
         this.title = title;
         this.done = done;

@@ -1,12 +1,11 @@
 package com.ipso.skiservice.backend.control;
 
-import com.ipso.skiservice.backend.model.Serviceangebot;
+import com.ipso.skiservice.backend.model.ServiceAngebot;
 import com.ipso.skiservice.backend.repository.ServiceAngebotRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
 
 import java.util.List;
 
@@ -18,22 +17,22 @@ public class ServiceAngebotController {
     private ServiceAngebotRepository serviceAngebotRepository;
 
     @GetMapping
-    public List<Serviceangebot> findAll(){
+    public List<ServiceAngebot> findAll() {
         return serviceAngebotRepository.findAll();
     }
 
     @PostMapping
-    public Serviceangebot save(@Validated @NonNull @RequestBody Serviceangebot serviceangebot){
+    public ServiceAngebot save(@Validated @NonNull @RequestBody ServiceAngebot serviceangebot) {
         return serviceAngebotRepository.save(serviceangebot);
     }
 
     @PutMapping
-    public Serviceangebot update(@Validated @NonNull @RequestBody Serviceangebot serviceangebot){
+    public ServiceAngebot update(@Validated @NonNull @RequestBody ServiceAngebot serviceangebot) {
         return serviceAngebotRepository.save(serviceangebot);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id){
+    public void delete(@PathVariable Long id) {
         serviceAngebotRepository.deleteById(id);
     }
 
