@@ -1,6 +1,6 @@
 package com.ipso.skiservice.backend.service;
 
-import com.ipso.skiservice.backend.model.User;
+import com.ipso.skiservice.backend.entity.User;
 import com.ipso.skiservice.backend.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,6 +20,6 @@ public class UserService implements UserDetailsService {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), new ArrayList<>());
-    
+
     }
 }

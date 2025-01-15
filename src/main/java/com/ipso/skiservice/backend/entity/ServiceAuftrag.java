@@ -1,5 +1,6 @@
-package com.ipso.skiservice.backend.model;
+package com.ipso.skiservice.backend.entity;
 
+import com.ipso.skiservice.backend.model.Prioritaet;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

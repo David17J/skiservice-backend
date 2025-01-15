@@ -1,6 +1,6 @@
-package com.ipso.skiservice.backend.control;
+package com.ipso.skiservice.backend.controller;
 
-import com.ipso.skiservice.backend.model.ServiceAuftrag;
+import com.ipso.skiservice.backend.entity.ServiceAuftrag;
 import com.ipso.skiservice.backend.repository.ServiceAuftragRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
@@ -23,6 +23,7 @@ public class ServiceAuftragController {
 
     @PostMapping
     public ServiceAuftrag save(@Validated @NonNull @RequestBody ServiceAuftrag serviceauftrag) {
+
         return serviceAuftragRepository.save(serviceauftrag);
     }
 

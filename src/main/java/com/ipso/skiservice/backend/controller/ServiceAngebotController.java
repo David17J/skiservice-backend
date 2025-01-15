@@ -1,8 +1,9 @@
-package com.ipso.skiservice.backend.control;
+package com.ipso.skiservice.backend.controller;
 
+import com.ipso.skiservice.backend.entity.ServiceAngebot;
 import com.ipso.skiservice.backend.model.Prioritaet;
-import com.ipso.skiservice.backend.model.ServiceAngebot;
 import com.ipso.skiservice.backend.repository.ServiceAngebotRepository;
+import com.ipso.skiservice.backend.service.ActionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.NonNull;
 import org.springframework.validation.annotation.Validated;
@@ -17,6 +18,9 @@ public class ServiceAngebotController {
     @Autowired
     private ServiceAngebotRepository serviceAngebotRepository;
 
+    @Autowired
+    private ActionLogService actionLogService;
+
     @GetMapping
     public List<ServiceAngebot> findAll() {
         return serviceAngebotRepository.findAll();
@@ -24,7 +28,9 @@ public class ServiceAngebotController {
 
     @PostMapping
     public ServiceAngebot save(@Validated @NonNull @RequestBody ServiceAngebot serviceangebot) {
-        return serviceAngebotRepository.save(serviceangebot);
+        ServiceAngebot save = serviceAngebotRepository.save(serviceangebot);
+        actionLogService.log("Service auftrag erstellt:" + save.getId());
+        return save;
     }
 
     @PutMapping
@@ -34,6 +40,7 @@ public class ServiceAngebotController {
 
     @DeleteMapping(value = "/{id}")
     public void delete(@PathVariable Long id) {
+        actionLogService.log("Service auftrag gelöscht:" + id);
         serviceAngebotRepository.deleteById(id);
     }
 

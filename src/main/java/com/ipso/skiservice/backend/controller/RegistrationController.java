@@ -1,7 +1,8 @@
-package com.ipso.skiservice.backend.control;
+package com.ipso.skiservice.backend.controller;
 
-import com.ipso.skiservice.backend.model.User;
+import com.ipso.skiservice.backend.entity.User;
 import com.ipso.skiservice.backend.repository.UserRepository;
+import com.ipso.skiservice.backend.service.ActionLogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,9 +18,14 @@ public class RegistrationController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
+    @Autowired
+    private ActionLogService actionLogService;
+
     @PostMapping(value = "/req/signup", consumes = "application/json")
     public User createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        actionLogService.log("hat sich eingeloggt");
         return myAppUserRepository.save(user);
     }
 

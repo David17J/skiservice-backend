@@ -1,4 +1,4 @@
-package com.ipso.skiservice.backend.control;
+package com.ipso.skiservice.backend.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
