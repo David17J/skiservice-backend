@@ -1,4 +1,4 @@
-package com.ipso.skiservice.backend.entity;
+package com.ipso.skiservice.backend.model;
 
 
 import lombok.Data;

@@ -25,7 +25,7 @@ public class RegistrationController {
     @PostMapping(value = "/req/signup", consumes = "application/json")
     public User createUser(@RequestBody User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        actionLogService.log("hat sich eingeloggt");
+        actionLogService.log("hat sich registriert");
         return myAppUserRepository.save(user);
     }
 

@@ -1,23 +1,27 @@
 package com.ipso.skiservice.backend.service;
 
 import com.ipso.skiservice.backend.entity.ActionLog;
-import com.ipso.skiservice.backend.repository.UserRepository;
+import com.ipso.skiservice.backend.repository.ActionLogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalTime;
 
 @Service
-public class ActionLogService implements UserDetailsService {
+public class ActionLogService {
     @Autowired
-    private UserRepository actionLogRepository;
+    private ActionLogRepository actionLogRepository;
 
-    @Override
     public void log(String text) throws UsernameNotFoundException {
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+
         ActionLog hatSichEingeloggt = ActionLog.builder()
-                .username(user.getUsername())
+                .username(currentPrincipalName)
                 .actionTime(LocalTime.now())
                 .text(text)
                 .build();
