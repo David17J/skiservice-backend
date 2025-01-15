@@ -21,4 +21,18 @@ public class StaticHtmlController {
         return "index";
     }
 
+    @GetMapping("/kontaktseite")
+    public String Kontaktseite() {
+        return "Kontaktseite";
+    }
+
+    @GetMapping("/ueberuns")
+    public String ueberuns() {
+        return "ueberuns";
+    }
+
+    @GetMapping("/dienstleistungen")
+    public String dienstleistungen() {
+        return "dienstleistungen";
+    }
 }
