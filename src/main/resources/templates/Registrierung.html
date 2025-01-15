@@ -102,12 +102,12 @@
             <div class="mb-3">
                 <label for="service" class="form-label">Angebote:</label>
                 <select id="service" name="service" class="form-select">
-                    <option value="Kleiner_Service">Kleiner Service</option>
-                    <option value="Grosser_Service">Grosser Service</option>
-                    <option value="Rennski_Service">Rennski-Service</option>
-                    <option value="MontierenEinstellen">Bindung montieren und einstellen</option>
-                    <option value="Fell_zuschneiden">Fell zuschneiden</option>
-                    <option value="Heisswaschen">Heisswaschen</option>
+                    <!--                    <option value="Kleiner_Service">Kleiner Service</option>-->
+                    <!--                    <option value="Grosser_Service">Grosser Service</option>-->
+                    <!--                    <option value="Rennski_Service">Rennski-Service</option>-->
+                    <!--                    <option value="MontierenEinstellen">Bindung montieren und einstellen</option>-->
+                    <!--                    <option value="Fell_zuschneiden">Fell zuschneiden</option>-->
+                    <!--                    <option value="Heisswaschen">Heisswaschen</option>-->
                 </select>
             </div>
 
@@ -136,3 +136,20 @@
     </form>
 </main>
 </body>
+
+<script>
+    const select = document.getElementById('service');
+    fetch('/serviceangebot', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data)
+            for (let i = 0; i < data.length; i++) {
+                var option = document.createElement("option");
+                option.text = data[i].title;
+                option.value = data[i].id;
+                select.appendChild(option);
+            }
+        })
+</script>

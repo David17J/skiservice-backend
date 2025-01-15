@@ -35,4 +35,9 @@ public class StaticHtmlController {
     public String dienstleistungen() {
         return "dienstleistungen";
     }
+
+    @GetMapping("/registrierung")
+    public String registrierung() {
+        return "registrierung";
+    }
 }
