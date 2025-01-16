@@ -1,40 +1,32 @@
 package com.ipso.skiservice.backend.controller;
 
 import com.ipso.skiservice.backend.entity.ServiceAuftrag;
-import com.ipso.skiservice.backend.repository.ServiceAuftragRepository;
+import com.ipso.skiservice.backend.model.AuftragStatusEnum;
+import com.ipso.skiservice.backend.service.ServiceAuftragService;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.NonNull;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
-@RequestMapping(value = "/serviceauftrag")
+@RequestMapping("/serviceauftrag")
 public class ServiceAuftragController {
 
     @Autowired
-    private ServiceAuftragRepository serviceAuftragRepository;
+    private ServiceAuftragService serviceAuftragService;
 
-    @GetMapping
-    public List<ServiceAuftrag> findAll() {
-        return serviceAuftragRepository.findAll();
+    @PutMapping("/{auftragId}/{status}")
+    public ResponseEntity<ServiceAuftrag> updateStatus(
+            @PathVariable Long auftragId,
+            @RequestParam AuftragStatusEnum status) {
+        ServiceAuftrag updatedAuftrag = serviceAuftragService.updateStatus(auftragId, status);
+        return ResponseEntity.ok(updatedAuftrag);
     }
 
-    @PostMapping
-    public ServiceAuftrag save(@Validated @NonNull @RequestBody ServiceAuftrag serviceauftrag) {
-
-        return serviceAuftragRepository.save(serviceauftrag);
+    @ApiResponse(description = "Ermöglicht Benutzer zu registrieren")
+    @PostMapping(consumes = "application/json")
+    public ServiceAuftrag createUser(@RequestBody ServiceAuftrag serviceAuftrag) {
+        //actionLogService.log("hat sich registriert");
+        return serviceAuftragService.saveAuftrag(serviceAuftrag);
     }
-
-    @PutMapping
-    public ServiceAuftrag update(@Validated @NonNull @RequestBody ServiceAuftrag serviceauftrag) {
-        return serviceAuftragRepository.save(serviceauftrag);
-    }
-
-    @DeleteMapping(value = "/{id}")
-    public void delete(@PathVariable Long id) {
-        serviceAuftragRepository.deleteById(id);
-    }
-
 }

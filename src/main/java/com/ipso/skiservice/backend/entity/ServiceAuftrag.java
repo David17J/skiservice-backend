@@ -1,6 +1,6 @@
 package com.ipso.skiservice.backend.entity;
 
-import com.ipso.skiservice.backend.model.Prioritaet;
+import com.ipso.skiservice.backend.model.AuftragStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,14 +16,16 @@ public class ServiceAuftrag {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     @NonNull
     private String vorname;
     private String nachname;
     private String email;
     private String telefon;
-    private Prioritaet prioritaet;
+
+    @Enumerated(EnumType.STRING) // Speichert den Status als Text in der Datenbank
+    private AuftragStatusEnum status = AuftragStatusEnum.OFFEN; // Standardwert: OFFEN
 
     @OneToOne
     private ServiceAngebot serviceAngebot;
-
 }
