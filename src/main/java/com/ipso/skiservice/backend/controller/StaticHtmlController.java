@@ -40,4 +40,24 @@ public class StaticHtmlController {
     public String registrierung() {
         return "registrierung";
     }
+
+    @GetMapping("/impressum")
+    public String impressum() {
+        return "impressum";
+    }
+
+    @GetMapping("/agb")
+    public String agb() {
+        return "agb";
+    }
+
+    @GetMapping("/datenschutzerklärung")
+    public String datenschutzerklärung() {
+        return "datenschutzerklärung";
+    }
+
+    @GetMapping("/abgeschlossen")
+    public String abgeschlossen() {
+        return "abgeschlossen";
+    }
 }

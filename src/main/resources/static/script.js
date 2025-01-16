@@ -86,6 +86,7 @@ function validateForm() {
     // Fehlernachricht anzeigen, wenn Formular ungültig ist
     return isValid;  // Gibt true zurück, wenn alle Validierungen bestanden sind, sonst false
 }
+
 //----------------------------------------Test Form------------------------------
 /*
 
@@ -134,7 +135,7 @@ function register(form2) {
     const phone = document.getElementById("phone").value;
     const service = document.getElementById("service").value;
     const priority = document.getElementById("priority").value;
-    
+
     const pickupDate = document.getElementById("pickupDate").value;
 
 
@@ -157,20 +158,20 @@ function register(form2) {
     };
 
     fetch(url, fetchData)
-    .then(response => {
-        console.log("Status:", response.status); // Loggen Sie den Status
-        if (!response.ok) throw new Error(`Fehler: ${response.status}`);
-        return response.json();
-    })
-    .then(json => {
-        console.log("Server response:", json); // Loggen Sie die Serverantwort
-        alert("Registrierung erfolgreich!");
-        location.href = "Abgeschlossen.html"; // Weiterleitung
-    })
-    .catch(error => {
-        console.error("Fehler:", error); // Loggen Sie den Fehler
-        alert("Es gab ein Problem. Bitte erneut versuchen.");
-    });
+        .then(response => {
+            console.log("Status:", response.status); // Loggen Sie den Status
+            if (!response.ok) throw new Error(`Fehler: ${response.status}`);
+            return response.json();
+        })
+        .then(json => {
+            console.log("Server response:", json); // Loggen Sie die Serverantwort
+            alert("Registrierung erfolgreich!");
+            location.href = "/abgeschlossen"; // Weiterleitung
+        })
+        .catch(error => {
+            console.error("Fehler:", error); // Loggen Sie den Fehler
+            alert("Es gab ein Problem. Bitte erneut versuchen.");
+        });
 }
 
 //-------------------------------------------Orginal form-----------------------
