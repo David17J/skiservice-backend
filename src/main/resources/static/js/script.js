@@ -1,6 +1,7 @@
 function calculatePickupDate() {
     const priority = document.getElementById("priority").value;
     let pickupDate;
+    let currentDate = new Date();
 
     if (priority === "low") {
         pickupDate = new Date(currentDate.getTime());
@@ -26,7 +27,7 @@ function sendInformation() {
     console.log("valid=" + valid);
     if (valid) {
         console.log("valid=" + valid);
-        register();
+        auftragErstellen();
     }
 }
 
@@ -127,8 +128,8 @@ form.onsubmit = function (event) {
 
 //-------------------------------------------Testing neue seite--------------------
 
-function register(form2) {
-    const url = "http://localhost:5000/api/registration";
+function auftragErstellen(form2) {
+    const url = "/serviceauftrag";
     const email = document.getElementById("email").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
@@ -137,16 +138,17 @@ function register(form2) {
     const priority = document.getElementById("priority").value;
 
     const pickupDate = document.getElementById("pickupDate").value;
-
+    const [day, month, year] = pickupDate.split('.');
 
     let form = {
-        name: firstName + " " + lastName,
+        vorname: firstName,
+        nachname: lastName,
         email: email,
-        phone: phone,
+        telefon: phone,
         priority: priority,
-        service: service,
-        currentDate: currentDate,
-        pickup_date: pickupDate
+        serviceAngebot: {id: service},
+        erstelldatum: new Date(),
+        abholdatum: new Date(`${year}-${month}-${day}`)
     };
 
     let fetchData = {

@@ -23,9 +23,9 @@ public class ServiceAuftragController {
         return ResponseEntity.ok(updatedAuftrag);
     }
 
-    @ApiResponse(description = "Ermöglicht Benutzer zu registrieren")
+    @ApiResponse(description = "Erstellt einen neuen Auftrag")
     @PostMapping(consumes = "application/json")
-    public ServiceAuftrag createUser(@RequestBody ServiceAuftrag serviceAuftrag) {
+    public ServiceAuftrag createAuftrag(@RequestBody ServiceAuftrag serviceAuftrag) {
         //actionLogService.log("hat sich registriert");
         return serviceAuftragService.saveAuftrag(serviceAuftrag);
     }
