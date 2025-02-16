@@ -8,6 +8,7 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -34,7 +35,6 @@ public class SecurityConfig {
         return provider;
     }
 
-
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -45,18 +45,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity
                                                            httpSecurity) throws Exception {
         return httpSecurity
-                .csrf().disable()
+                .csrf(AbstractHttpConfigurer::disable)
                 .formLogin(httpForm -> {
                     httpForm.loginPage("/login");
-//                    httpForm.loginProcessingUrl("/req/login");
-                    httpForm.defaultSuccessUrl("/index", true);
+                    httpForm.defaultSuccessUrl("/index");
                 })
 
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/req/signup", "/req/login", "/login", "/signup", "/css/**", "/js/**").permitAll();
+                    registry.requestMatchers("/req/signup", "/req/login", "/login", "/signup", "/css/**", "/js/**", "/public/**").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .build();
 
     }
+
+
 }

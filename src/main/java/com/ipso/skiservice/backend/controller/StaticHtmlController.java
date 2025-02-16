@@ -11,11 +11,20 @@ public class StaticHtmlController {
         return "login";
     }
 
-    @GetMapping("/signup")
+    @GetMapping("/req/signup")
     public String signup() {
         return "signup";
     }
 
+    @GetMapping("/index")
+    public String home() {
+        return "index";
+    }
+
+    @GetMapping("/req/login")
+    public String index() {
+        return "index";
+    }
 
     @GetMapping("/ueberuns")
     public String ueberuns() {
