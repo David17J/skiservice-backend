@@ -26,8 +26,8 @@ public class StaticHtmlController {
         return "index";
     }
 
-    @GetMapping("/abgeschlossen")
-    public String abgeschlossen() {
-        return "abgeschlossen";
+    @GetMapping("/swagger")
+    public String swagger() {
+        return "/swagger-ui.html";
     }
 }

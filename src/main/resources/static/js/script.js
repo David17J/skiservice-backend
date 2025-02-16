@@ -167,8 +167,8 @@ function auftragErstellen(form2) {
         })
         .then(json => {
             console.log("Server response:", json); // Loggen Sie die Serverantwort
-            alert("Registrierung erfolgreich!");
-            location.href = "/abgeschlossen"; // Weiterleitung
+            // alert("Registrierung erfolgreich!");
+            location.href = "/abgeschlossen.html"; // Weiterleitung
         })
         .catch(error => {
             console.error("Fehler:", error); // Loggen Sie den Fehler
