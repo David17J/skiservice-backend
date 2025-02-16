@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.util.Optional;
+
 @RestController
 public class SignupController {
 
@@ -31,10 +33,15 @@ public class SignupController {
     @ApiResponse(description = "Ermöglicht Benutzer zu registrieren")
     @PostMapping(value = "/signup")
     public RedirectView processSignupForm(@RequestParam String username, @RequestParam String password, @RequestParam String email) {
+
+        Optional<User> byUsername = userRepository.findByUsername(username.toLowerCase());
+        if (byUsername.isPresent()) {
+            throw new RuntimeException("User already exists");
+        }
         User user = User.builder()
                 .password(passwordEncoder.encode(password))
                 .email(email)
-                .username(username).build();
+                .username(username.toLowerCase()).build();
         User savedUser = userRepository.save(user);
         actionLogService.log(savedUser.getUsername() + "hat sich registriert");
         return new RedirectView("login");
