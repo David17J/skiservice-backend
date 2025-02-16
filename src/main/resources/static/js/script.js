@@ -113,7 +113,7 @@ form.onsubmit = function (event) {
         })
         .then((response) => response.json())
         .then((data) => {
-            window.location.href = "Abgeschlossen.html";
+            window.location.href = "abgeschlossen.html";
         })
         .catch((error) => {
             console.error("Fehler:", error);
@@ -201,7 +201,7 @@ function register(form2) {
             'Content-type': 'application/json; charset=UTF-8',
         },
         
-    };          //window.location.href = "Abgeschlossen.html";
+    };          //window.location.href = "abgeschlossen.html";
 
    console.log("form" + JSON.stringify(fetchData));
     fetch(url,fetchData)//.then((response)=>response.json())

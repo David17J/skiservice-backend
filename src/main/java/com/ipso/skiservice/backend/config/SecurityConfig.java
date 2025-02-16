@@ -51,7 +51,13 @@ public class SecurityConfig {
                     httpForm.loginPage("/login");
                     httpForm.defaultSuccessUrl("/index");
                 })
-
+                .logout(logout -> logout
+                        .logoutUrl("/logout") // Logout-URL
+                        .logoutSuccessUrl("/login?logout") // Weiterleitung nach erfolgreichem Logout
+                        .invalidateHttpSession(true) // Sitzung ungültig machen
+                        .deleteCookies("JSESSIONID") // Cookies löschen
+                        .permitAll()
+                )
                 .authorizeHttpRequests(registry -> {
                     registry.requestMatchers("/login", "/signup", "/css/**", "/js/**", "/media/**").permitAll();
                     registry.anyRequest().authenticated();
