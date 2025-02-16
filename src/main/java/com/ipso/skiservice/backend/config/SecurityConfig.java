@@ -47,13 +47,13 @@ public class SecurityConfig {
         return httpSecurity
                 .csrf().disable()
                 .formLogin(httpForm -> {
-                    httpForm.loginPage("/req/login").permitAll();
+                    httpForm.loginPage("/login");
+//                    httpForm.loginProcessingUrl("/req/login");
                     httpForm.defaultSuccessUrl("/index", true);
                 })
 
-
                 .authorizeHttpRequests(registry -> {
-                    registry.requestMatchers("/req/signup", "/css/**", "/js/**").permitAll();
+                    registry.requestMatchers("/req/signup", "/req/login", "/login", "/signup", "/css/**", "/js/**").permitAll();
                     registry.anyRequest().authenticated();
                 })
                 .build();
